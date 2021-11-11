@@ -1,0 +1,35 @@
+{
+  "paths": [
+    {
+      "name": "/restaurants",
+      "lambdaFunction": "restaurants",
+      "privacy": {
+        "open": true
+      },
+      "policyResourceName": "/restaurants"
+    }
+  ],
+  "resourceName": "restaurants",
+  "apiName": "restaurants",
+  "functionArns": [
+    {
+      "lambdaFunction": "restaurants"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-reactapp-dev-122927-authRole",
+    "unAuthRoleName": "amplify-reactapp-dev-122927-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "restaurants",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
