@@ -12,10 +12,13 @@
       "AmplifyAppId": "d24jusn95ilcmx"
     },
     "categories": {
+      "auth": {
+        "reactapp71a41176": {}
+      },
       "function": {
-        "restaurants": {
+        "restaurantsfunction": {
           "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
-          "s3Key": "amplify-builds/restaurants-565239646f687a6f326f-build.zip"
+          "s3Key": "amplify-builds/restaurantsfunction-57614a734f41482f6d70-build.zip"
         }
       }
     }

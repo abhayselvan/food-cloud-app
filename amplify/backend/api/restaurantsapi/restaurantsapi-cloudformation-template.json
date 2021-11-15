@@ -8,15 +8,15 @@
         },
     
     
-          "functionrestaurantsName": {
+          "functionrestaurantsfunctionName": {
             "Type": "String",
-            "Default": "functionrestaurantsName"
+            "Default": "functionrestaurantsfunctionName"
           },
 
           
-          "functionrestaurantsArn": {
+          "functionrestaurantsfunctionArn": {
             "Type": "String",
-            "Default": "functionrestaurantsArn"
+            "Default": "functionrestaurantsfunctionArn"
           }
 
           
@@ -37,16 +37,16 @@
         
         
         
-      "restaurants": {
+      "restaurantsapi": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "restaurants",
+          "Name": "restaurantsapi",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "restaurants"
+              "title": "restaurantsapi"
             },
             "host": {
                 "Fn::Join": [
@@ -150,6 +150,12 @@
                     }
                   },
                   
+                    "security": [
+                        {
+                          "sigv4": []
+                        }
+                      ],
+                  
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -168,7 +174,7 @@
                             
                             {
 
-                                "Ref": "functionrestaurantsArn"
+                                "Ref": "functionrestaurantsfunctionArn"
                             },
                             
                             "/invocations"
@@ -249,6 +255,12 @@
                     }
                   },
                   
+                    "security": [
+                        {
+                          "sigv4": []
+                        }
+                      ],
+                  
                   "x-amazon-apigateway-integration": {
                     "responses": {
                       "default": {
@@ -267,7 +279,7 @@
                           
                           {
 
-                            "Ref": "functionrestaurantsArn"
+                            "Ref": "functionrestaurantsfunctionArn"
                           },
                           
                           "/invocations"
@@ -324,12 +336,12 @@
       
         
 
-        "functionrestaurantsPermissionrestaurants": {
+        "functionrestaurantsfunctionPermissionrestaurantsapi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionrestaurantsName"
+                        "Ref":  "functionrestaurantsfunctionName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -348,7 +360,7 @@
                             },
                             ":",
                             {
-                                "Ref": "restaurants"
+                                "Ref": "restaurantsapi"
                             },
                             "/*/*/*"
                         ]
@@ -359,7 +371,7 @@
         
         
 
-      "DeploymentAPIGWrestaurants": {
+      "DeploymentAPIGWrestaurantsapi": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -373,7 +385,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "restaurants"
+            "Ref": "restaurantsapi"
           }
         }
       }
@@ -381,15 +393,15 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "restaurants"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "restaurantsapi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "restaurants"
+          "Value": "restaurantsapi"
         },
         "ApiId": {
           "Description": "API ID (prefix of API URL)",
-          "Value": {"Ref": "restaurants"}
+          "Value": {"Ref": "restaurantsapi"}
         }
     }
   }

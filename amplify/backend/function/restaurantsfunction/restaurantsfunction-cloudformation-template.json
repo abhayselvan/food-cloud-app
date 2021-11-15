@@ -15,6 +15,14 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "storagerestaurantsdbName": {
+      "Type": "String",
+      "Default": "storagerestaurantsdbName"
+    },
+    "storagerestaurantsdbArn": {
+      "Type": "String",
+      "Default": "storagerestaurantsdbArn"
     }
   },
   "Conditions": {
@@ -47,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "restaurants",
+            "restaurantsfunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "restaurants",
+                  "restaurantsfunction",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "reactappLambdaRole939e1400",
+            "reactappLambdaRole250611ce",
             {
               "Fn::Join": [
                 "",
                 [
-                  "reactappLambdaRole939e1400",
+                  "reactappLambdaRole250611ce",
                   "-",
                   {
                     "Ref": "env"
@@ -160,6 +168,34 @@
                   }
                 ]
               }
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeTable",
+                "dynamodb:GetItem",
+                "dynamodb:Query",
+                "dynamodb:Scan",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagerestaurantsdbArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagerestaurantsdbArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }
