@@ -3,6 +3,11 @@ import React, { useState, useEffect } from "react";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import Amplify, { API, Auth } from "aws-amplify";
 import config from "./aws-exports";
+import { Router } from "@reach/router";
+import CustomerPage from "./Pages/CustomerPage";
+import RestaurantPage from "./Pages/RestaurantPage";
+import Home from "./Pages/Home";
+import "./css/App.css";
 Amplify.configure(config);
 
 function App() {
@@ -16,10 +21,11 @@ function App() {
   }, []);
   return (
     <div className="App">
-      <h1>Hello from foodcloud</h1>
-      <h2>
-        <AmplifySignOut />
-      </h2>
+       <Router>
+        <Home path="/" />
+        <CustomerPage path="/customer" />
+        <RestaurantPage path="/restaurant" />
+      </Router>
     </div>
   );
 }

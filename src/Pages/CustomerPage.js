@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Header from '../components/Header'
 import {
   View,
   Text,
@@ -81,9 +82,11 @@ class CustomerPage extends Component {
   render() {
     const {foods, query} = this.state;
     return (
+  
       <View style={styles.wrapper}>
         <View style={styles.topWrapper}>
           <View style={styles.textInputWrapper}>
+            <Header/>
             <TextInput
               style={styles.textInput}
               onChangeText={this.onChangeQuery}

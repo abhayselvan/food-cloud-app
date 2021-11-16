@@ -22,26 +22,6 @@
   justify-content: center;
   align-items: center;
 }
-.Homepage_icon {
-  color: var(--food);
-  font-size: 30px !important;
-  margin-right: 5px;
-  margin-left: 50px;
-}
-.Homepage_header {
-  display: flex;
-  color: var(--food) !important;
-  position: sticky;
-  top: 0;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px !important;
-  font-weight: 700;
-  background-color: white;
-  z-index: 100;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
 
 .Homepage_Button {
   border: none !important;
