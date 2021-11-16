@@ -1,0 +1,10 @@
+body {
+  --food: #ffc107;
+}
+.App {
+  height: 100%;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
+}
