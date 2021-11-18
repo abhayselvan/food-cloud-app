@@ -1,11 +1,57 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import "../css/MenuCard.css";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import Items from "../Items";
 
 const MenuCard = forwardRef(({ key, id, name, price, image }, ref) => {
   const [count, setCount] = useState(0);
+  const [countChanged, setCountChanged] = useState(false);
+
+  useEffect(async () => {
+    if (countChanged) {
+      let found = false;
+      const item = {
+        id: id,
+        name: name,
+        quantity: count,
+        price: price,
+        total: price * count,
+      };
+      if (Items.length != 0) {
+        Items.forEach((item, i) => {
+          if (item.name === name) {
+            if (count != 0) {
+              item.quantity = count;
+              item.total = price * count;
+              found = true;
+            } else {
+              Items.splice(i, 1);
+              found = true;
+            }
+          }
+        });
+      } else {
+        Items.push(item);
+        found = true;
+      }
+      if (found === false) {
+        Items.push(item);
+      }
+      console.log(Items);
+    }
+  });
+
+  const increment = () => {
+    setCount(count + 1);
+    setCountChanged(true);
+  };
+  const decrement = () => {
+    setCount(count === 0 ? 0 : count - 1);
+    setCountChanged(true);
+  };
+
   return (
     <div className="MenuCard" ref={ref}>
       <div className="wrapper">
@@ -28,7 +74,11 @@ const MenuCard = forwardRef(({ key, id, name, price, image }, ref) => {
                 </div>
 
                 <div className="shareOption">
-                  <AddIcon htmlColor="tomato" className="shareIcon" />
+                  <AddIcon
+                    htmlColor="tomato"
+                    className="shareIcon"
+                    onClick={increment}
+                  />
                 </div>
 
                 <div className="shareOption">
@@ -36,10 +86,11 @@ const MenuCard = forwardRef(({ key, id, name, price, image }, ref) => {
                 </div>
 
                 <div className="shareOption">
-                  <RemoveIcon htmlColor="tomato" className="shareIcon" />
-                </div>
-                <div className="shareOption">
-                  <button className="button">Add to Cart</button>
+                  <RemoveIcon
+                    htmlColor="tomato"
+                    className="shareIcon"
+                    onClick={decrement}
+                  />
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import MenuCard from "./MenuCard";
 import FlipMove from "react-flip-move";
+import Items from "../Items";
 
 const Menu = ({ name }) => {
   const [menu, setMenu] = useState([]);
@@ -30,12 +31,21 @@ const Menu = ({ name }) => {
     getMenu();
   }, []);
 
+  const addToCartClicked = () => {
+    console.log(Items);
+  };
+
   return (
     <div>
       <Header />
       <div className="shareOptionText">
-      <span className="shareOptionText">{name}</span>
-    </div>
+        <span className="shareOptionText">{name}</span>
+      </div>
+      <div className="shareOption">
+        <button className="button" onClick={addToCartClicked}>
+          Add All To Cart
+        </button>
+      </div>
       <FlipMove>
         {menu.map((item) => (
           <MenuCard

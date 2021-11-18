@@ -1,7 +1,7 @@
 import React from "react";
 import FilterDramaIcon from "@mui/icons-material/FilterDrama";
 import "../css/Header.css";
-import {AmplifySignOut } from "@aws-amplify/ui-react";
+import { AmplifySignOut } from "@aws-amplify/ui-react";
 
 function Header() {
   return (
