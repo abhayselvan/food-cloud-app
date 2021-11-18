@@ -1,0 +1,87 @@
+.RestaurantCard {
+  display: flex;
+  margin-top: 5px;
+  align-items: flex-start;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.wrapper {
+  padding: 30px;
+}
+
+.top {
+  display: flex;
+  padding-top: 10px;
+}
+
+.img {
+  width: 400px;
+  height: 250px;
+  border-radius: 10%;
+  object-fit: cover;
+
+  margin-right: 10px;
+  margin-left: 2px;
+  margin-bottom: 10px;
+}
+.choose {
+  border: none !important;
+  padding: 7px !important;
+  margin-left: 80px !important;
+  border-radius: 5px !important;
+  background-color: var(--food) !important;
+  font-weight: 500 !important;
+  margin-right: 20px !important;
+  padding-left: 120px;
+  cursor: pointer;
+  color: white !important;
+}
+
+.shareBottom {
+  display: flex;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-top: 20%;
+}
+
+.shareOptions {
+  display: flex;
+  margin-left: 20px;
+}
+
+.shareOption {
+  display: flex;
+  align-items: center !important;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.shareIcon {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.shareOptionText {
+  font-size: 14px;
+  font-weight: 500;
+}
+.center {
+  padding-top: 10px;
+  width: 650px;
+  align-content: center;
+  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 20px;
+}
+
+.shareOptionTextName {
+  padding-left: 30%;
+
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.shareHr {
+  margin: 10px;
+}

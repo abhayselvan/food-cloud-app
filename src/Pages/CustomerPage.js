@@ -1,167 +1,63 @@
-import React, {Component} from 'react';
-import Header from '../components/Header'
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import React, { useState, useEffect } from "react";
+import Header from "../components/Header";
+import RestaurantCard from "../components/RestaurantCard";
+import FlipMove from "react-flip-move";
 
+function CustomerPage() {
+  const [restaurants, setRestaurants] = useState([]);
 
-import NavHeaderRight from '../components/NavHeaderRight';
-import ListCard from '../components/ListCard'
-
-//const BASE_URL = Config.NGROK_HTTPS_URL;
-
-class CustomerPage extends Component {
-  static navigationOptions = ({navigation}) => {
-    return {
-      title: 'Hungry?',
-      headerRight: (
-        <NavHeaderRight toScreen={'OrderSummary'} buttonText={'View Basket'} />
-      ),
+  useEffect(() => {
+    const getRestaurants = async () => {
+      const restaurants = [
+        {
+          id: 1,
+          name: "Cheesecake Factory",
+          cusine: "American",
+          rating: 4,
+          image:
+            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
+        },
+        {
+          id: 2,
+          name: "Cheesecake Factory",
+          cusine: "American",
+          rating: 4,
+          image:
+            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
+        },
+        {
+          id: 3,
+          name: "Cheesecake Factory",
+          cusine: "American",
+          rating: 4,
+          image:
+            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
+        },
+      ];
+      setRestaurants(restaurants);
     };
-  };
-  //
-   foods_r = [
-    {
-      id: 1,
-      name: 'Spicy Teriyaki',
-      price: 19.25,
-      image: 'spicy-teriyaki.jpg',
-  
-      restaurant: {
-        id: 25,
-        name: 'MIZ Japanese Restaurant',
-        address: '17 Kampong Bahru Rd, Singapore 169347',
-        location: [16.618037, 120.3146543],
-      },
-    },
-    {
-      id: 2,
-      name: 'Honey Garlic Chicken',
-      price: 5.5,
-      image: 'honey-garlic-chicken.jpg',
-      restaurant_id: 26,
-  
-      restaurant: {
-        id: 26,
-        name: 'Everton Food Place',
-        address: '7 Everton Park, Singapore 080007',
-        location: [1.2773164, 103.8384773],
-      },
-    },
-  ]
 
-  state = {
-    foods: [],
-    query: '',
-  };
-  //
+    getRestaurants();
+  }, []);
 
-  async componentDidMount() {
-    try {
-      //const foods_response = await axios.get(`${BASE_URL}/foods`);
+  return (
+    <div>
+      <Header />
 
-      this.setState({
-        foods: this.foods_r
-      });
-    } catch (err) {
-      console.log('err: ', err);
-    }
-  }
-
-  onChangeQuery = text => {
-    this.setState({
-      query: text,
-    });
-  };
-
-  render() {
-    const {foods, query} = this.state;
-    return (
-  
-      <View style={styles.wrapper}>
-        <View style={styles.topWrapper}>
-          <View style={styles.textInputWrapper}>
-            <Header/>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={this.onChangeQuery}
-              value={query}
-              placeholder={'What are you craving for?'}
-            />
-          </View>
-
-          <View style={styles.buttonWrapper}>
-            <Button
-              onPress={() => this.filterList()}
-              title="Go"
-              color="#c53c3c"
-            />
-          </View>
-        </View>
-
-        <FlatList
-          data={foods}
-          renderItem={this.renderFood}
-          contentContainerStyle={styles.list}
-          keyExtractor={item => item.id.toString()}
-        />
-      </View>
-    );
-  }
-  //
-
-  filterList = async () => {
-    const {query} = this.state;
-    //const foods_response = await axios.get(`${BASE_URL}/foods?query=${query}`);
-
-    this.setState({
-      foods: this.foods_r,
-      query: '',
-    });
-  };
-
-  viewItem = item => {
-    this.props.navigation.navigate('FoodDetails', {
-      item,
-    });
-  };
-
-  renderFood = ({item}) => {
-    return <ListCard item={item} viewItem={this.viewItem} />;
-  };
+      <FlipMove>
+        {restaurants.map((restaurant) => (
+          <RestaurantCard
+            key={restaurant.id}
+            id={restaurant.id}
+            name={restaurant.name}
+            cusine={restaurant.cusine}
+            rating={restaurant.rating}
+            image={restaurant.image}
+          />
+        ))}
+      </FlipMove>
+    </div>
+  );
 }
-//
-
-const styles = StyleSheet.create({
-  headerButtonContainer: {
-    marginRight: 10,
-  },
-  wrapper: {
-    flex: 1,
-    padding: 10,
-  },
-  topWrapper: {
-    flexDirection: 'row',
-  },
-  textInputWrapper: {
-    flex: 4,
-  },
-  textInput: {
-    height: 35,
-    borderColor: '#5d5d5d',
-    borderWidth: 1,
-  },
-  buttonWrapper: {
-    flex: 1,
-  },
-  list: {
-    marginTop: 20,
-  },
-});
 
 export default CustomerPage;

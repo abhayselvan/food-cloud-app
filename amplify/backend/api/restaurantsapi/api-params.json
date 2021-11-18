@@ -5,13 +5,7 @@
       "lambdaFunction": "restaurantsfunction",
       "privacy": {
         "private": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ]
+        "auth": ["/POST", "/GET", "/PUT", "/PATCH", "/DELETE"]
       },
       "policyResourceName": "/restaurants"
     }
@@ -33,10 +27,7 @@
     {
       "category": "function",
       "resourceName": "restaurantsfunction",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
+      "attributes": ["Name", "Arn"]
     }
   ]
 }

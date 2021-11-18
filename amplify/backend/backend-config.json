@@ -8,10 +8,7 @@
         {
           "category": "storage",
           "resourceName": "restaurantsdb",
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
+          "attributes": ["Name", "Arn"],
           "attributeEnvMap": {
             "Name": "TABLE_NAME",
             "Arn": "TABLE_ARN"
@@ -28,10 +25,7 @@
         {
           "category": "function",
           "resourceName": "restaurantsfunction",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
+          "attributes": ["Name", "Arn"]
         }
       ]
     }
@@ -49,23 +43,15 @@
       "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [
-          "PREFERRED_USERNAME"
-        ],
-        "signupAttributes": [
-          "EMAIL"
-        ],
+        "loginMechanisms": ["PREFERRED_USERNAME"],
+        "signupAttributes": ["EMAIL"],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "mfaTypes": ["SMS"],
+        "verificationMechanisms": ["EMAIL"]
       }
     }
   }

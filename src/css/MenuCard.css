@@ -1,0 +1,86 @@
+.MenuCard {
+  display: flex;
+  align-items: flex-start;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.wrapper {
+  padding: 30px;
+}
+
+.top {
+  display: flex;
+  padding-top: 10px;
+}
+
+.img {
+  width: 400px;
+  height: 200px;
+  border-radius: 10%;
+  object-fit: cover;
+
+  margin-right: 10px;
+  margin-left: 2px;
+  margin-bottom: 10px;
+}
+
+.button {
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: tomato;
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: white;
+}
+
+.shareBottom {
+  display: flex;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-top: 20%;
+}
+
+.shareOptions {
+  display: flex;
+  margin-left: 20px;
+}
+
+.shareOption {
+  display: flex;
+  align-items: center !important;
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.shareIcon {
+  font-size: 18px;
+  margin-right: 3px;
+}
+
+.shareOptionText {
+  font-size: 14px;
+  font-weight: 500;
+}
+.center {
+  padding-top: 10px;
+  width: 650px;
+  align-content: center;
+  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 20px;
+}
+
+.shareOptionTextName {
+  padding-left: 30%;
+
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.shareHr {
+  margin: 10px;
+}
