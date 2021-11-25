@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API } from "aws-amplify";
 import Header from "../components/Header";
 import RestaurantCard from "../components/RestaurantCard";
 import FlipMove from "react-flip-move";
@@ -6,39 +7,14 @@ import FlipMove from "react-flip-move";
 function CustomerPage() {
   const [restaurants, setRestaurants] = useState([]);
 
-  useEffect(() => {
-    const getRestaurants = async () => {
-      const restaurants = [
-        {
-          id: 1,
-          name: "Cheesecake Factory",
-          cusine: "American",
-          rating: 4,
-          image:
-            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
-        },
-        {
-          id: 2,
-          name: "Cheesecake Factory",
-          cusine: "American",
-          rating: 4,
-          image:
-            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
-        },
-        {
-          id: 3,
-          name: "Cheesecake Factory",
-          cusine: "American",
-          rating: 4,
-          image:
-            "https://fazolis.com/wp-content/uploads/2019/12/P1_20_Images_1241x711_Straw-Cheesecake_LOGO.jpg",
-        },
-      ];
-      setRestaurants(restaurants);
-    };
-
-    getRestaurants();
-  }, []);
+useEffect(() => {
+  API.get("restaurantsapi", "/restaurants/restaurantId").then(
+    (fetchedRestaurants) => {
+      setRestaurants(fetchedRestaurants);
+      console.log(fetchedRestaurants);
+    }
+  );
+}, []);
 
   return (
     <div>
@@ -47,12 +23,14 @@ function CustomerPage() {
       <FlipMove>
         {restaurants.map((restaurant) => (
           <RestaurantCard
-            key={restaurant.id}
-            id={restaurant.id}
+            key={restaurant.restaurantId}
+            id={restaurant.restaurantId}
             name={restaurant.name}
-            cusine={restaurant.cusine}
+            city={restaurant.city}
+            items={restaurant.items}
+            cusine={restaurant.cuisine}
             rating={restaurant.rating}
-            image={restaurant.image}
+            image={restaurant.imageUrl}
           />
         ))}
       </FlipMove>

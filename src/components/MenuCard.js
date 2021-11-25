@@ -19,10 +19,10 @@ const MenuCard = forwardRef(({ key, id, name, price, image }, ref) => {
         price: price,
         total: price * count,
       };
-      if (Items.length != 0) {
+      if (Items.length !== 0) {
         Items.forEach((item, i) => {
           if (item.name === name) {
-            if (count != 0) {
+            if (count !== 0) {
               item.quantity = count;
               item.total = price * count;
               found = true;
