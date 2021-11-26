@@ -18,17 +18,6 @@ Amplify.configure(config);
 function App() {
   const [userInfo, setUserInfo] = useState({});
 
-  useEffect(() => {
-    let user;
-    async function getInfo() {
-      user = await Auth.currentAuthenticatedUser();
-      await setUserInfo(user);
-    }
-    getInfo();
-
-    console.log(userInfo);
-  });
-
   return (
     <div className="App">
       <Router>

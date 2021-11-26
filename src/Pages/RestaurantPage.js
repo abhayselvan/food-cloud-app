@@ -18,23 +18,23 @@ function RestaurantPage() {
   const [cuisine, setCuisine] = useState("");
   const [rating, setRating] = useState(0);
 
-  useEffect(() => {
-    API.get("restaurantsapi", "/restaurants/restaurantId")
-      .then((res) => {
-        console.log("get all");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   API.get("restaurantsapi", "/restaurants/restaurantId")
+  //     .then((res) => {
+  //       console.log("get all");
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
-  useEffect(() => {
-    API.get("restaurantsapi", "/restaurants/object/1")
-      .then((res) => {
-        console.log("get one");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   API.get("restaurantsapi", "/restaurants/object/1")
+  //     .then((res) => {
+  //       console.log("get one");
+  //       console.log(res);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div>
