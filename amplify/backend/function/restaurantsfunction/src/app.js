@@ -97,7 +97,12 @@ app.get(path + hashKeyPath, function (req, res) {
  *****************************************/
 
 app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
-  var params = {};
+  var params = {
+    TableName: tableName,
+    Key: {
+      restaurantId: req.params.restaurantId,
+    },
+  };
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
       req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
