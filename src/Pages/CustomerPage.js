@@ -26,6 +26,7 @@ useEffect(() => {
             key={restaurant.restaurantId}
             id={restaurant.restaurantId}
             name={restaurant.name}
+            address={restaurant.address}
             city={restaurant.city}
             items={restaurant.items}
             cusine={restaurant.cuisine}

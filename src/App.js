@@ -9,25 +9,30 @@ import RestaurantPage from "./Pages/RestaurantPage";
 import Menu from "./components/Menu";
 import Home from "./Pages/Home";
 import "./css/App.css";
+import UserInfo from "./UserInfo";
 
 Amplify.configure(config);
 
 function App() {
-  const [userInfo, setUserInfo] = useState({});
+  // const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     Auth.currentAuthenticatedUser({
       bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
     })
-      .then((user) => console.log(user))
+      .then((user) => {
+        console.log(UserInfo);
+        UserInfo.push(user.attributes.email);
+      })
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <div className="App">
       <Router>
         <Home path="/" />
         <CustomerPage path="/customer" />
         <RestaurantPage path="/restaurant" />
-        <Menu path="/restaurant/:name" />
+        <Menu path="/restaurant/:id" />
       </Router>
     </div>
   );

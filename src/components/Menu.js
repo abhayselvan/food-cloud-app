@@ -3,49 +3,62 @@ import Header from "../components/Header";
 import MenuCard from "./MenuCard";
 import FlipMove from "react-flip-move";
 import Items from "../Items";
+import UserInfo from "../UserInfo";
+import { API } from "aws-amplify";
+import "../css/Menu.css";
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import ReactStars from "react-rating-stars-component";
+import { Restaurant } from "@mui/icons-material";
+import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 
-const Menu = ({ name }) => {
+const Menu = ({ id }) => {
   const [menu, setMenu] = useState([]);
+  const [restaurant, setRestaurant] = useState({});
 
   useEffect(() => {
-    const getMenu = async () => {
-      const menu = [
-        {
-          id: 1,
-          name: "Classic Newyork Cheescake",
-          price: 20,
-          image:
-            "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80",
-        },
-        {
-          id: 2,
-          name: "French Fries",
-          price: 10,
-          image:
-            "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=774&q=80",
-        },
-      ];
-      setMenu(menu);
-    };
-
-    getMenu();
+    const path = `/restaurants/object/${id}`;
+    API.get("restaurantsapi", path).then((fetchedMenu) => {
+      setRestaurant(fetchedMenu);
+      setMenu(fetchedMenu.items);
+      console.log(fetchedMenu);
+    });
   }, []);
 
   const addToCartClicked = () => {
+    console.log(UserInfo[0]);
     console.log(Items);
   };
 
   return (
     <div>
       <Header />
-      <div className="shareOptionText">
-        <span className="shareOptionText">{name}</span>
+      <div className="Menu">
+        <div className="">
+          <div className="shareOptions">
+            <div className="shareOption">
+              <DinnerDiningIcon htmlColor="blue" className="shareIcon" />
+              <span className="shareOptionText">{restaurant.name}</span>
+            </div>
+            <div className="shareOption">
+              <LocationCityIcon htmlColor="Gold" className="shareIcon" />
+              <span className="shareOptionText">
+                {restaurant.address}, {restaurant.city}
+              </span>
+            </div>
+            <div className="shareOption">
+              <LocalDiningIcon htmlColor="green" className="shareIcon" />
+              <span className="shareOptionText">{restaurant.cuisine}</span>
+            </div>
+            <div className="shareOption">
+              <button className="button" onClick={addToCartClicked}>
+                Add All To Cart
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="shareOption">
-        <button className="button" onClick={addToCartClicked}>
-          Add All To Cart
-        </button>
-      </div>
+
       <FlipMove>
         {menu.map((item) => (
           <MenuCard
@@ -53,7 +66,7 @@ const Menu = ({ name }) => {
             id={item.id}
             name={item.name}
             price={item.price}
-            image={item.image}
+            image={item.imageUrl}
           />
         ))}
       </FlipMove>
