@@ -18,7 +18,7 @@
       "function": {
         "restaurantsfunction": {
           "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
-          "s3Key": "amplify-builds/restaurantsfunction-57614a734f41482f6d70-build.zip"
+          "s3Key": "amplify-builds/restaurantsfunction-51366d456447344d6e53-build.zip"
         }
       }
     }

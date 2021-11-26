@@ -2,63 +2,78 @@ import React, { useContext } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
 
 function AddRestaurant() {
-  const value = useContext(RestaurantContext);
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     API.post("restaurantsapi", "/restaurants", {
-  //       body: {
-  //         restaurantId: restaurantId,
-  //         name: name,
-  //         city: city,
-  //         address: address,
-  //         rating: rating,
-  //         items: items,
-  //       },
-  //     })
-  //       .then((res) => console.log(res))
-  //       .catch((err) => console.log(err));
-  //   };
+  const obj = useContext(RestaurantContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    obj.setPage("menu");
+  };
   return (
     <div>
-      <h1> Restaurant Page</h1>
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          value={restaurantId}
-          placeholder="restaurant id"
-          onChange={(e) => {
-            setRestaurantId(e.target.value);
-          }}
-        />
-        <input
-          value={name}
-          placeholder="restaurant name"
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
-        />
-        <input
-          value={city}
-          placeholder="city"
-          onChange={(e) => {
-            setCity(e.target.value);
-          }}
-        />
-        <input
-          value={address}
-          placeholder="address"
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
-        />
-        <input
-          value={rating}
-          placeholder="rating"
-          onChange={(e) => {
-            setRating(parseInt(e.target.value));
-          }}
-        />
+      <form onSubmit={handleSubmit}>
+        <ul>
+          <li>
+            Restaurant ID:
+            <input
+              value={obj.restaurantId}
+              placeholder="restaurant id"
+              onChange={(e) => {
+                obj.setRestaurantId(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Restaurant Name:
+            <input
+              value={obj.name}
+              placeholder="restaurant name"
+              onChange={(e) => {
+                obj.setName(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Cuisine:
+            <input
+              value={obj.cuisine}
+              placeholder="cuisine"
+              onChange={(e) => {
+                obj.setCuisine(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            City:
+            <input
+              value={obj.city}
+              placeholder="city"
+              onChange={(e) => {
+                obj.setCity(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Address:
+            <input
+              value={obj.address}
+              placeholder="address"
+              onChange={(e) => {
+                obj.setAddress(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Rating:
+            <input
+              value={obj.rating}
+              placeholder="rating"
+              onChange={(e) => {
+                obj.setRating(parseInt(e.target.value));
+              }}
+            />
+          </li>
+        </ul>
         <button>Add Menu Items</button>
-      </form> */}
+      </form>
     </div>
   );
 }

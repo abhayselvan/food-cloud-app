@@ -82,7 +82,7 @@ app.get(path + hashKeyPath, function (req, res) {
     KeyConditions: condition,
   };
 
-  dynamodb.query(queryParams, (err, data) => {
+  dynamodb.scan(queryParams, (err, data) => {
     if (err) {
       res.statusCode = 500;
       res.json({ error: "Could not load items: " + err });
@@ -97,12 +97,7 @@ app.get(path + hashKeyPath, function (req, res) {
  *****************************************/
 
 app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
-  var params = {
-    TableName: tableName,
-    Key: {
-      restaurantId: req.params.restaurantId,
-    },
-  };
+  var params = {};
   if (userIdPresent && req.apiGateway) {
     params[partitionKeyName] =
       req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
@@ -132,7 +127,9 @@ app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
 
   let getItemParams = {
     TableName: tableName,
-    Key: params,
+    // Key: params,
+    // Key: { restaurantId: "4" },
+    Key: req.params,
   };
 
   dynamodb.get(getItemParams, (err, data) => {
@@ -232,7 +229,7 @@ app.delete(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
 
   let removeItemParams = {
     TableName: tableName,
-    Key: params,
+    Key: req.params,
   };
   dynamodb.delete(removeItemParams, (err, data) => {
     if (err) {

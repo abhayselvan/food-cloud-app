@@ -5,36 +5,23 @@ import Header from "../components/Header";
 import { RestaurantContext } from "../util/restaurantContext";
 import AddRestaurant from "../components/AddRestaurant";
 import AddMenu from "../components/AddMenu";
+import RestaurantAdded from "../components/RestaurantAdded";
 
 Amplify.configure(config);
 
 function RestaurantPage() {
-  const [page, setPage] = useState("menu");
+  const [page, setPage] = useState("restaurant");
   const [restaurantId, setRestaurantId] = useState("");
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
+  const [cuisine, setCuisine] = useState("");
   const [rating, setRating] = useState(0);
-  const [items, setItems] = useState([]);
-  const [item, setItem] = useState({});
-  const [itemId, setItemId] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [itemPrice, setItemPrice] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     API.get("restaurantsapi", "/restaurants/restaurantId")
       .then((res) => {
         console.log("get all");
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    API.del("restaurantsapi", "/restaurants/object/1")
-      .then((res) => {
-        console.log("delete one");
         console.log(res);
       })
       .catch((err) => console.log(err));
@@ -52,8 +39,29 @@ function RestaurantPage() {
   return (
     <div>
       <Header />
-      <RestaurantContext.Provider value="hello">
-        <div>{page === "restaurant" ? <AddRestaurant /> : <AddMenu />}</div>
+      <RestaurantContext.Provider
+        value={{
+          page,
+          setPage,
+          restaurantId,
+          setRestaurantId,
+          name,
+          setName,
+          city,
+          setCity,
+          address,
+          setAddress,
+          rating,
+          setRating,
+          cuisine,
+          setCuisine,
+        }}
+      >
+        <div>
+          {page === "restaurant" && <AddRestaurant />}
+          {page === "menu" && <AddMenu />}
+          {page === "completed" && <RestaurantAdded />}
+        </div>
       </RestaurantContext.Provider>
     </div>
   );
