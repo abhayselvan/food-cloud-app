@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { API } from "aws-amplify";
 import Header from "../components/Header";
 import RestaurantCard from "../components/RestaurantCard";
 import FlipMove from "react-flip-move";
@@ -10,16 +9,14 @@ Amplify.configure(config);
 function CustomerPage() {
   const [restaurants, setRestaurants] = useState([]);
 
-
-useEffect(() => {
-  API.get("restaurantsapi", "/restaurants/restaurantId").then(
-    (fetchedRestaurants) => {
-      setRestaurants(fetchedRestaurants);
-      console.log(fetchedRestaurants);
-    }
-  );
-}, []);
-
+  useEffect(() => {
+    API.get("restaurantsapi", "/restaurants/restaurantId").then(
+      (fetchedRestaurants) => {
+        setRestaurants(fetchedRestaurants);
+        console.log(fetchedRestaurants);
+      }
+    );
+  }, []);
 
   return (
     <div>
@@ -37,7 +34,6 @@ useEffect(() => {
             cusine={restaurant.cuisine}
             rating={restaurant.rating}
             image={restaurant.imageUrl}
-
           />
         ))}
       </FlipMove>
