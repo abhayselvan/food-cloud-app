@@ -13,11 +13,9 @@ import "./css/App.css";
 import { getAmplifyUserAgent } from "@aws-amplify/core";
 import UserInfo from "./UserInfo";
 
-
 Amplify.configure(config);
 
 function App() {
-
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
@@ -29,7 +27,7 @@ function App() {
     getInfo();
 
     console.log(userInfo);
-
+  });
 
   return (
     <div className="App">
