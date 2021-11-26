@@ -1,110 +1,122 @@
 {
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "DynamoDB resource stack creation using Amplify CLI",
-  "Parameters": {
-    "partitionKeyName": {
-      "Type": "String"
-    },
-    "partitionKeyType": {
-      "Type": "String"
-    },
-    "env": {
-      "Type": "String"
-    },
-
-    "tableName": {
-      "Type": "String"
-    }
-  },
-  "Conditions": {
-    "ShouldNotCreateEnvResources": {
-      "Fn::Equals": [
-        {
-          "Ref": "env"
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "DynamoDB resource stack creation using Amplify CLI",
+    "Parameters": {
+        "partitionKeyName": {
+            "Type": "String"
         },
-        "NONE"
-      ]
-    }
-  },
-  "Resources": {
-    "DynamoDBTable": {
-      "Type": "AWS::DynamoDB::Table",
-      "Properties": {
-        "AttributeDefinitions": [
-          {
-            "AttributeName": "restaurantId",
-            "AttributeType": "S"
-          }
-        ],
-        "KeySchema": [
-          {
-            "AttributeName": "restaurantId",
-            "KeyType": "HASH"
-          }
-        ],
-        "ProvisionedThroughput": {
-          "ReadCapacityUnits": "5",
-          "WriteCapacityUnits": "5"
+        "partitionKeyType": {
+            "Type": "String"
         },
-        "StreamSpecification": {
-          "StreamViewType": "NEW_IMAGE"
+        "env": {
+            "Type": "String"
         },
-        "TableName": {
-          "Fn::If": [
-            "ShouldNotCreateEnvResources",
-            {
-              "Ref": "tableName"
-            },
-            {
-              "Fn::Join": [
-                "",
-                [
-                  {
-                    "Ref": "tableName"
-                  },
-                  "-",
-                  {
-                    "Ref": "env"
-                  }
-                ]
-              ]
-            }
-          ]
+        
+        "tableName": {
+            "Type": "String"
         }
-      }
-    }
-  },
-  "Outputs": {
-    "Name": {
-      "Value": {
-        "Ref": "DynamoDBTable"
-      }
     },
-    "Arn": {
-      "Value": {
-        "Fn::GetAtt": ["DynamoDBTable", "Arn"]
-      }
+    "Conditions": {
+        "ShouldNotCreateEnvResources": {
+            "Fn::Equals": [
+                {
+                    "Ref": "env"
+                },
+                "NONE"
+            ]
+        }
     },
-    "StreamArn": {
-      "Value": {
-        "Fn::GetAtt": ["DynamoDBTable", "StreamArn"]
-      }
-    },
-    "PartitionKeyName": {
-      "Value": {
-        "Ref": "partitionKeyName"
-      }
-    },
-    "PartitionKeyType": {
-      "Value": {
-        "Ref": "partitionKeyType"
-      }
-    },
+    "Resources": {
+        "DynamoDBTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [
+                  
+                  {
+                      "AttributeName": "restaurantId",
+                      "AttributeType": "S"
+                  } 
+                  
+                ],
+                "KeySchema": [
+                  
+                  {
+                    "AttributeName": "restaurantId",
+                    "KeyType": "HASH"
+                  } 
+                  
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": "5",
+                    "WriteCapacityUnits": "5"
+                },
+                "StreamSpecification": {
+                    "StreamViewType": "NEW_IMAGE"
+                },
+                "TableName": {
+                    "Fn::If": [
+                        "ShouldNotCreateEnvResources",
+                        {
+                           "Ref": "tableName"
+                        }, 
+                        {
 
-    "Region": {
-      "Value": {
-        "Ref": "AWS::Region"
-      }
+                            "Fn::Join": [
+                                "",
+                                [
+                                  {
+                                    "Ref": "tableName"
+                                  },
+                                  "-",
+                                  {
+                                    "Ref": "env"
+                                  }
+                                ]
+                            ]
+                        }
+                    ]
+                }
+                
+            }
+        }
+    },
+    "Outputs": {
+        "Name": {
+            "Value": {
+                "Ref": "DynamoDBTable"
+            }
+        },
+        "Arn": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "DynamoDBTable",
+                    "Arn"
+                ]
+            }
+        },
+        "StreamArn": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "DynamoDBTable",
+                    "StreamArn"
+                ]
+            }
+        },
+        "PartitionKeyName": {
+            "Value": {
+                "Ref": "partitionKeyName"
+            }
+        },
+        "PartitionKeyType": {
+            "Value": {
+                "Ref": "partitionKeyType"
+            }
+        },
+        
+        "Region": {
+            "Value": {
+                "Ref": "AWS::Region"
+            }
+        }
     }
-  }
 }

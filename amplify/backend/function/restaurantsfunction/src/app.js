@@ -127,7 +127,9 @@ app.get(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
 
   let getItemParams = {
     TableName: tableName,
-    Key: params,
+    // Key: params,
+    // Key: { restaurantId: "4" },
+    Key: req.params,
   };
 
   dynamodb.get(getItemParams, (err, data) => {
@@ -227,7 +229,7 @@ app.delete(path + "/object" + hashKeyPath + sortKeyPath, function (req, res) {
 
   let removeItemParams = {
     TableName: tableName,
-    Key: params,
+    Key: req.params,
   };
   dynamodb.delete(removeItemParams, (err, data) => {
     if (err) {
