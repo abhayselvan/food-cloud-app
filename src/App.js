@@ -9,11 +9,15 @@ import RestaurantPage from "./Pages/RestaurantPage";
 import Menu from "./components/Menu";
 import Home from "./Pages/Home";
 import "./css/App.css";
+
 import { getAmplifyUserAgent } from "@aws-amplify/core";
+import UserInfo from "./UserInfo";
+
 
 Amplify.configure(config);
 
 function App() {
+
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
@@ -25,14 +29,15 @@ function App() {
     getInfo();
 
     console.log(userInfo);
-  }, []);
+
+
   return (
     <div className="App">
       <Router>
         <Home path="/" />
         <CustomerPage path="/customer" />
         <RestaurantPage path="/restaurant" />
-        <Menu path="/restaurant/:name" />
+        <Menu path="/restaurant/:id" />
       </Router>
     </div>
   );

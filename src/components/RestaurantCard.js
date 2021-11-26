@@ -3,9 +3,10 @@ import { Link } from "@reach/router";
 import "../css/RestaurantCard.css";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import ReactStars from "react-rating-stars-component";
+import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 const RestaurantCard = forwardRef(
-  ({ key, id, name, cusine, rating, image }, ref) => {
+  ({ key, id, name, address, city, items, cusine, rating, image }, ref) => {
     return (
       <div className="RestaurantCard" ref={ref}>
         <div className="wrapper">
@@ -23,14 +24,21 @@ const RestaurantCard = forwardRef(
               <div className="shareBottom">
                 <div className="shareOptions">
                   <div className="shareOption">
+                    <LocationCityIcon htmlColor="Gold" className="shareIcon" />
+                    <span className="shareOptionText">
+                      {address}, {city}
+                    </span>
+                  </div>
+                  <div className="shareOption">
                     <LocalDiningIcon htmlColor="green" className="shareIcon" />
                     <span className="shareOptionText">{cusine}</span>
                   </div>
+
                   <div className="shareOption">
                     <ReactStars
                       count={5}
                       value={rating}
-                      size={20}
+                      size={16}
                       activeColor="tomato"
                       edit={false}
                     />
@@ -38,7 +46,7 @@ const RestaurantCard = forwardRef(
                 </div>
               </div>
             </div>
-            <Link to={`/restaurant/${name}`}>
+            <Link to={`/restaurant/${id}`}>
               <button className="choose">Choose</button>
             </Link>
           </div>

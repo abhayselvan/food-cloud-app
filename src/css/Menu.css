@@ -1,0 +1,23 @@
+.Menu {
+  display: flex;
+  position: sticky;
+  align-items: flex-start;
+  border-radius: 10px;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: tomato !important;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.button {
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: var(--food);
+  font-weight: 500;
+
+  cursor: pointer;
+  color: white;
+}
