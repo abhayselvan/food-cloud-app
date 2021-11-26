@@ -14,7 +14,7 @@ function AddRestaurant() {
           <li>
             Restaurant ID:
             <input
-              value={obj.restaurantId}
+              defaultValue=""
               placeholder="restaurant id"
               onChange={(e) => {
                 obj.setRestaurantId(e.target.value);
@@ -24,7 +24,7 @@ function AddRestaurant() {
           <li>
             Restaurant Name:
             <input
-              value={obj.name}
+              defaultValue=""
               placeholder="restaurant name"
               onChange={(e) => {
                 obj.setName(e.target.value);
@@ -34,7 +34,7 @@ function AddRestaurant() {
           <li>
             Cuisine:
             <input
-              value={obj.cuisine}
+              defaultValue=""
               placeholder="cuisine"
               onChange={(e) => {
                 obj.setCuisine(e.target.value);
@@ -44,7 +44,7 @@ function AddRestaurant() {
           <li>
             City:
             <input
-              value={obj.city}
+              defaultValue=""
               placeholder="city"
               onChange={(e) => {
                 obj.setCity(e.target.value);
@@ -54,7 +54,7 @@ function AddRestaurant() {
           <li>
             Address:
             <input
-              value={obj.address}
+              defaultValue=""
               placeholder="address"
               onChange={(e) => {
                 obj.setAddress(e.target.value);
@@ -64,7 +64,7 @@ function AddRestaurant() {
           <li>
             Rating:
             <input
-              value={obj.rating}
+              defaultValue=""
               placeholder="rating"
               onChange={(e) => {
                 obj.setRating(parseInt(e.target.value));

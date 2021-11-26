@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
 import Amplify, { API } from "aws-amplify";
 import config from "../aws-exports";
@@ -6,6 +6,7 @@ Amplify.configure(config);
 
 function AddMenu() {
   const obj = useContext(RestaurantContext);
+  const formRef = useRef();
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
@@ -17,6 +18,7 @@ function AddMenu() {
 
   const handleAdd = (e) => {
     e.preventDefault();
+    formRef.current.reset();
     setItems(
       [...items].concat([
         {
@@ -47,40 +49,42 @@ function AddMenu() {
   };
   return (
     <div>
-      <ul>
-        <li>
-          Item ID
-          <input
-            value={itemId}
-            placeholder="Item ID"
-            onChange={(e) => {
-              setItemId(e.target.value);
-            }}
-          />
-        </li>
-        <li>
-          Item Name
-          <input
-            value={itemName}
-            placeholder="Item Name"
-            onChange={(e) => {
-              setItemName(e.target.value);
-            }}
-          />
-        </li>
-        <li>
-          Item Price
-          <input
-            value={itemPrice}
-            placeholder="Item Price"
-            onChange={(e) => {
-              setItemPrice(e.target.value);
-            }}
-          />
-        </li>
-      </ul>
-      <button onClick={handleAdd}>Add Item</button>
-      <button onClick={handleSubmit}>Submit</button>
+      <form ref={formRef}>
+        <ul>
+          <li>
+            Item ID
+            <input
+              defaultValue=""
+              placeholder="Item ID"
+              onChange={(e) => {
+                setItemId(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Item Name
+            <input
+              defaultValue=""
+              placeholder="Item Name"
+              onChange={(e) => {
+                setItemName(e.target.value);
+              }}
+            />
+          </li>
+          <li>
+            Item Price
+            <input
+              defaultValue=""
+              placeholder="Item Price"
+              onChange={(e) => {
+                setItemPrice(e.target.value);
+              }}
+            />
+          </li>
+        </ul>
+        <button onClick={handleAdd}>Add Item</button>
+        <button onClick={handleSubmit}>Submit</button>
+      </form>
       <ul>
         {items.map((item, i) => {
           <li key={i}>{item.itemName}</li>;
