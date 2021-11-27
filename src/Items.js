@@ -1,2 +1,2 @@
-const Items = [];
+var Items = [];
 export default Items;
