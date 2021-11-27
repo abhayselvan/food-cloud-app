@@ -1,0 +1,14 @@
+{
+  "resourceName": "ordersdb",
+  "tableName": "ordersdb",
+  "partitionKey": {
+    "fieldName": "userEmail",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "orderId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

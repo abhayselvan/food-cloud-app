@@ -1,0 +1,42 @@
+{
+  "paths": [
+    {
+      "name": "/orders",
+      "lambdaFunction": "ordersfunction",
+      "privacy": {
+        "private": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ]
+      },
+      "policyResourceName": "/orders"
+    }
+  ],
+  "resourceName": "ordersapi",
+  "apiName": "ordersapi",
+  "functionArns": [
+    {
+      "lambdaFunction": "ordersfunction"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 0,
+    "authRoleName": "amplify-reactapp-dev-122927-authRole",
+    "unAuthRoleName": "amplify-reactapp-dev-122927-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "ordersfunction",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}
