@@ -181,7 +181,7 @@ app.post(path, function(req, res) {
   var uuidTime = require('uuid-time'),
   uuid     = require('node-uuid');
   var tUuid = uuid.v1();
-  req.body['CreationDate'] = todayDate
+  req.body['creationDate'] = todayDate
   req.body['orderId'] = tUuid
   let putItemParams = {
     TableName: tableName,
