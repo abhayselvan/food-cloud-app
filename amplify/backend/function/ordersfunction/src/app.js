@@ -177,7 +177,12 @@ app.post(path, function(req, res) {
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
-
+  var todayDate = new Date();
+  var uuidTime = require('uuid-time'),
+  uuid     = require('node-uuid');
+  var tUuid = uuid.v1();
+  req.body['CreationDate'] = todayDate
+  req.body['orderId'] = tUuid
   let putItemParams = {
     TableName: tableName,
     Item: req.body
