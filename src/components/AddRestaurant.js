@@ -1,15 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
 
 function AddRestaurant() {
+  const formRef = useRef();
   const obj = useContext(RestaurantContext);
   const handleSubmit = (e) => {
     e.preventDefault();
     obj.setPage("menu");
+    formRef.current.reset();
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form ref={formRef} onSubmit={handleSubmit}>
         <ul>
           <li>
             Restaurant ID:
