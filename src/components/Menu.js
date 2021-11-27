@@ -11,10 +11,12 @@ import LocationCityIcon from "@mui/icons-material/LocationCity";
 import ReactStars from "react-rating-stars-component";
 import { Restaurant } from "@mui/icons-material";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import { useNavigate } from "@reach/router";
 
 const Menu = ({ id }) => {
   const [menu, setMenu] = useState([]);
   const [restaurant, setRestaurant] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const path = `/restaurants/object/${id}`;
@@ -26,8 +28,7 @@ const Menu = ({ id }) => {
   }, []);
 
   const addToCartClicked = () => {
-    console.log(UserInfo[0]);
-    console.log(Items);
+    navigate(`/cart?restaurantId=${id}`);
   };
 
   return (
