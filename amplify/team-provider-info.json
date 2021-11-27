@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-reactapp-dev-122927-unauthRole",
       "StackName": "amplify-reactapp-dev-122927",
       "StackId": "arn:aws:cloudformation:us-east-2:108085554053:stack/amplify-reactapp-dev-122927/be325a30-419b-11ec-869e-0a60d767fa00",
-      "AmplifyAppId": "d24jusn95ilcmx"
+      "AmplifyAppId": "d24jusn95ilcmx",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-reactapp-dev-122927-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -19,6 +20,10 @@
         "restaurantsfunction": {
           "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
           "s3Key": "amplify-builds/restaurantsfunction-51366d456447344d6e53-build.zip"
+        },
+        "ordersfunction": {
+          "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
+          "s3Key": "amplify-builds/ordersfunction-6a50613064416b315559-build.zip"
         }
       }
     }
