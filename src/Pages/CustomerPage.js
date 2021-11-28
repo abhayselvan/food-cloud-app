@@ -11,6 +11,7 @@ Amplify.configure(config);
 function CustomerPage() {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -22,28 +23,47 @@ function CustomerPage() {
       setIsLoading(false);
     }
     fetchData();
-  }, []);
+  }, [restaurants]);
 
   return (
     <div>
       <Header />
+      <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
       {!isLoading && (
         <div>
           <div>
             <FlipMove>
-              {restaurants.map((restaurant) => (
-                <RestaurantCard
-                  key={restaurant.restaurantId}
-                  id={restaurant.restaurantId}
-                  name={restaurant.name}
-                  address={restaurant.address}
-                  city={restaurant.city}
-                  items={restaurant.items}
-                  cusine={restaurant.cuisine}
-                  rating={restaurant.rating}
-                  image={restaurant.imageUrl}
-                />
-              ))}
+              {restaurants
+                .filter((restaurant) => {
+                  if (searchTerm == "") {
+                    return restaurant;
+                  } else if (
+                    restaurant.name
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
+                    return restaurant;
+                  }
+                })
+                .map((restaurant) => (
+                  <RestaurantCard
+                    key={restaurant.restaurantId}
+                    id={restaurant.restaurantId}
+                    name={restaurant.name}
+                    address={restaurant.address}
+                    city={restaurant.city}
+                    items={restaurant.items}
+                    cusine={restaurant.cuisine}
+                    rating={restaurant.rating}
+                    image={restaurant.imageUrl}
+                  />
+                ))}
             </FlipMove>
           </div>
           <Link to="/orders">
