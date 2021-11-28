@@ -13,7 +13,7 @@ class Home extends Component {
           <div className="">
             <div className="container home-cont1-text homeBottom homeOptions">
               <Link to="/customer">
-                <button className="Homepage_Button">Customer</button>{" "}
+                <button className="Homepage_Button">Customer</button>
               </Link>
               <Link to="/restaurant">
                 <button className="Homepage_Button">Restaurant</button>
