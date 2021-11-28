@@ -10,45 +10,43 @@ import Home from "./Pages/Home";
 import "./css/App.css";
 import Cart from "./components/Cart";
 import OrderPlaced from "./Pages/OrderPlaced";
-
+import { CustomerContext } from "./util/CustomerContext";
 import { getAmplifyUserAgent } from "@aws-amplify/core";
 import UserInfo from "./UserInfo";
+import OrderHistory from "./Pages/OrderHistory";
 
 Amplify.configure(config);
 
 function App() {
-  const [userInfo, setUserInfo] = useState({});
+  const [userEmail, setUserEmail] = useState(null);
+  const [restaurantName, setRestaurantName] = useState(null);
 
-  // useEffect(() => {
-  //   Auth.currentAuthenticatedUser({
-  //     bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-  //   })
-  //     .then((user) => console.log(user))
-  //     .then((user) => {
-  //       UserInfo.push(user.attributes.email);
-  //       setUserInfo(user.attributes.email);
-  //       console.log(userInfo);
-  //       console.log(UserInfo);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-  let user;
-  useEffect(async () => {
-    user = await Auth.currentAuthenticatedUser();
-    console.log(user.attributes.email);
-    UserInfo.push(user.attributes.email);
-  });
+  useEffect(() => {
+    async function fetchData() {
+      const userInfo = await Auth.currentAuthenticatedUser();
+      setUserEmail(userInfo.attributes.email);
+      UserInfo.push(userInfo.attributes.email);
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
-      <Router>
-        <Home path="/" />
-        <CustomerPage path="/customer" />
-        <RestaurantPage path="/restaurant" />
-        <Menu path="/restaurant/:id" />
-        <Cart path="/cart" />
-        <OrderPlaced path="/order-placed" />
-      </Router>
+      {userEmail && (
+        <CustomerContext.Provider
+          value={{ userEmail, restaurantName, setRestaurantName }}
+        >
+          <Router>
+            <Home exact path="/" />
+            <CustomerPage exact path="/customer" />
+            <RestaurantPage exact path="/restaurant" />
+            <Menu path="/restaurant/:id" />
+            <Cart path="/cart" />
+            <OrderHistory exact path="/orders" />
+            <OrderPlaced path="/order-placed" />
+          </Router>
+        </CustomerContext.Provider>
+      )}
     </div>
   );
 }

@@ -19,24 +19,6 @@ function RestaurantPage() {
   const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState(0);
 
-  // useEffect(() => {
-  //   API.get("restaurantsapi", "/restaurants/restaurantId")
-  //     .then((res) => {
-  //       console.log("get all");
-  //       console.log(res);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // useEffect(() => {
-  //   API.get("restaurantsapi", "/restaurants/object/1")
-  //     .then((res) => {
-  //       console.log("get one");
-  //       console.log(res);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
-
   return (
     <div>
       <Header />
@@ -57,7 +39,7 @@ function RestaurantPage() {
           cuisine,
           setCuisine,
           imageUrl,
-          setImageUrl
+          setImageUrl,
         }}
       >
         <div>
