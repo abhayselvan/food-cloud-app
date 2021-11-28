@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import Amplify, { API } from "aws-amplify";
 import config from "../aws-exports";
-import UserInfo from "../UserInfo";
 import { CustomerContext } from "../util/CustomerContext";
-import { Link } from "@reach/router";
 Amplify.configure(config);
 
 function OrderHistory() {
   const [orders, setOrders] = useState(null);
   const { userEmail } = useContext(CustomerContext);
-  const { page, setPage } = useState("orders");
 
   useEffect(() => {
     console.log(userEmail);

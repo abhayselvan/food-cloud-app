@@ -49,26 +49,6 @@ function CustomerPage() {
           <Link to="/orders">
             <button className="Homepage_Button">Orders</button>
           </Link>
-          <div>
-            <FlipMove>
-              {restaurants.map((restaurant) => (
-                <RestaurantCard
-                  key={restaurant.restaurantId}
-                  id={restaurant.restaurantId}
-                  name={restaurant.name}
-                  address={restaurant.address}
-                  city={restaurant.city}
-                  items={restaurant.items}
-                  cusine={restaurant.cuisine}
-                  rating={restaurant.rating}
-                  image={restaurant.imageUrl}
-                />
-              ))}
-            </FlipMove>
-          </div>
-          <Link to="/orders">
-            <button className="Homepage_Button">Orders</button>
-          </Link>
         </div>
       )}
     </div>
