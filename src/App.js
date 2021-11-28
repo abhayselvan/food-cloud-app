@@ -9,7 +9,7 @@ import Menu from "./components/Menu";
 import Home from "./Pages/Home";
 import "./css/App.css";
 import Cart from "./components/Cart";
-import Final from "./Pages/Final";
+import OrderPlaced from "./Pages/OrderPlaced";
 
 import { getAmplifyUserAgent } from "@aws-amplify/core";
 import UserInfo from "./UserInfo";
@@ -48,7 +48,7 @@ function App() {
         <RestaurantPage path="/restaurant" />
         <Menu path="/restaurant/:id" />
         <Cart path="/cart" />
-        <Final path="/final" />
+        <OrderPlaced path="/order-placed" />
       </Router>
     </div>
   );

@@ -70,7 +70,7 @@ const Menu = ({ id }) => {
             name={item.name}
             price={item.price}
             image={item.imageUrl}
-            restaurant = {restaurant.name}
+            // restaurant = {restaurant.name}
           />
         ))}
       </FlipMove>

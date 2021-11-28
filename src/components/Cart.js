@@ -8,6 +8,7 @@ import { useLocation } from "@reach/router";
 import { useNavigate } from "@reach/router";
 import { v4 as uuid } from 'time-uuid';
 
+
 Amplify.configure(config);
 
 const Cart = (props) => {
@@ -40,12 +41,9 @@ const Cart = (props) => {
 
             var getTime = require('time-uuid/time');
             var getIdByTime = require('time-uuid/get-by-time');
+    
 
-            
-            console.log(date)
-            console.log(params.get("restaurantId"))
-            API.post('ordersapi', '/orders', {
-                body: {
+            const body = {
                     userEmail : UserInfo[0],
                     totalBill : subTotal,
                     orderId : getIdByTime(getTime()) ,
@@ -53,9 +51,38 @@ const Cart = (props) => {
                     restaurantName : "superdennys",
                     restaurantId: params.get("restaurantId"),
                     orderStatus : "placed",
-                    items: items,
-                }
-            }).then((res) => navigate('/final'))
+                    items: items
+            }
+            // var fs = require('browserify-fs');
+            // const saveData = (final) => {
+            //     const finished = (error) => {
+            //         if(error){
+            //             console.error(error)
+            //             return;
+            //         }
+            //     }
+            //     const jsonData = JSON.stringify(final,null,2)
+            //     fs.writeFile('final.json',jsonData,finished)
+
+            // }
+            // saveData(final)
+
+
+            console.log(date)
+            console.log(params.get("restaurantId"))
+            API.post('ordersapi', '/orders', {
+                // body: {
+                //     userEmail : UserInfo[0],
+                //     totalBill : subTotal,
+                //     orderId : getIdByTime(getTime()) ,
+                //     creationDate : date,
+                //     restaurantName : "superdennys",
+                //     restaurantId: params.get("restaurantId"),
+                //     orderStatus : "placed",
+                //     items: items,
+                // }
+                body
+            }).then((res) => navigate('/order-placed',{state:body}))
             .catch((err) => console.log(err));
 
             // API.get('ordersapi','/orders/'+UserInfo[0])
