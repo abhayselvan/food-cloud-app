@@ -23,7 +23,7 @@ function CustomerPage() {
       setIsLoading(false);
     }
     fetchData();
-  }, [restaurants]);
+  }, []);
 
   return (
     <div>
