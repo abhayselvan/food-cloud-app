@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
 import Amplify, { API } from "aws-amplify";
 import config from "../aws-exports";
@@ -7,11 +7,10 @@ Amplify.configure(config);
 
 function AddMenu() {
   const obj = useContext(RestaurantContext);
-  const formRef = useRef();
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
-  const [itemImageUrl, setItemIageUrl] = useState("");
+  const [itemImageUrl, setItemImageUrl] = useState("");
   const [itemPrice, setItemPrice] = useState("");
 
   useEffect(() => {
@@ -20,7 +19,15 @@ function AddMenu() {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    formRef.current.reset();
+
+    if (
+      itemId === "" ||
+      itemName === "" ||
+      itemPrice === "" ||
+      itemImageUrl === ""
+    ) {
+      return;
+    }
     setItems(
       [...items].concat([
         {
@@ -31,10 +38,18 @@ function AddMenu() {
         },
       ])
     );
+    setItemId("");
+    setItemName("");
+    setItemPrice("");
+    setItemImageUrl("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (items.length === 0) {
+      return;
+    }
+
     API.post("restaurantsapi", "/restaurants", {
       body: {
         restaurantId: obj.restaurantId,
@@ -55,12 +70,13 @@ function AddMenu() {
     <div className="add">
       <div className="addTable">
         <div className="formWrapper">
-          <form ref={formRef}>
+          <form>
             <div className="fieldc">
               <label className="labelc">Item ID : </label>
               <input
                 className="inputc"
-                defaultValue=""
+                required
+                value={itemId}
                 onChange={(e) => {
                   setItemId(e.target.value);
                 }}
@@ -70,7 +86,8 @@ function AddMenu() {
               <label className="labelc">Item Name : </label>
               <input
                 className="inputc"
-                defaultValue=""
+                required
+                value={itemName}
                 onChange={(e) => {
                   setItemName(e.target.value);
                 }}
@@ -80,7 +97,8 @@ function AddMenu() {
               <label className="labelc">Item Price : </label>
               <input
                 className="inputc"
-                defaultValue=""
+                required
+                value={itemPrice}
                 onChange={(e) => {
                   setItemPrice(e.target.value);
                 }}
@@ -90,9 +108,10 @@ function AddMenu() {
               <label className="labelc">Item Image URL : </label>
               <input
                 className="inputImageText"
-                defaultValue=""
+                required
+                value={itemImageUrl}
                 onChange={(e) => {
-                  setItemIageUrl(e.target.value);
+                  setItemImageUrl(e.target.value);
                 }}
               />
             </div>
