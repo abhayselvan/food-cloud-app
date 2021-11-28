@@ -65,6 +65,16 @@ function AddRestaurant() {
               />
             </div>
             <div className="fieldc">
+              <label className="labelc"> Image URL : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setImageUrl(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
               <label className="labelc"> Rating : </label>
               <input
                 className="inputc"

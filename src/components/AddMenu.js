@@ -11,6 +11,7 @@ function AddMenu() {
   const [items, setItems] = useState([]);
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
+  const [itemImageUrl, setItemIageUrl] = useState("");
   const [itemPrice, setItemPrice] = useState("");
 
   useEffect(() => {
@@ -23,9 +24,10 @@ function AddMenu() {
     setItems(
       [...items].concat([
         {
-          itemId: itemId,
-          itemName: itemName,
-          itemPrice: itemPrice,
+          id: itemId,
+          name: itemName,
+          imageUrl: itemImageUrl,
+          price: itemPrice,
         },
       ])
     );
@@ -40,6 +42,7 @@ function AddMenu() {
         cuisine: obj.cuisine,
         city: obj.city,
         address: obj.address,
+        imageUrl: obj.imageUrl,
         rating: obj.rating,
         items: items,
       },
@@ -74,12 +77,22 @@ function AddMenu() {
               />
             </div>
             <div className="fieldc">
-              <label className="labelc">Item Price</label>
+              <label className="labelc">Item Price : </label>
               <input
                 className="inputc"
                 defaultValue=""
                 onChange={(e) => {
                   setItemPrice(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
+              <label className="labelc">Item Iamge URL : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  setItemIageUrl(e.target.value);
                 }}
               />
             </div>

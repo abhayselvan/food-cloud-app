@@ -2,7 +2,7 @@ import React from "react";
 
 function RestaurantAdded() {
   return (
-    <div className="">
+    <div className="added">
       <h1>Restaurant added successfully!</h1>
     </div>
   );
