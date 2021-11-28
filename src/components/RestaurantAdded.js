@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
+import "../css/RestaurantAdded.css";
 
 function RestaurantAdded() {
   const { setPage } = useContext(RestaurantContext);
@@ -9,9 +10,11 @@ function RestaurantAdded() {
     setPage("restaurant");
   };
   return (
-    <div>
-      <h1>Restaurant added successfully!</h1>
-      <button onClick={handleSubmit}>Add new restaurant</button>
+    <div className="add">
+      <div className="addTable">
+        <span className="addedText">Restaurant added successfully!</span>
+        <button onClick={handleSubmit}>Add new restaurant</button>
+      </div>
     </div>
   );
 }

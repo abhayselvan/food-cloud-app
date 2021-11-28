@@ -16,6 +16,7 @@ function RestaurantPage() {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [cuisine, setCuisine] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [rating, setRating] = useState(0);
 
   // useEffect(() => {
@@ -55,6 +56,8 @@ function RestaurantPage() {
           setRating,
           cuisine,
           setCuisine,
+          imageUrl,
+          setImageUrl
         }}
       >
         <div>
