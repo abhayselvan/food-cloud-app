@@ -18,7 +18,7 @@ const Cart = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
     
-    // console.log(items[0].restaurant);
+    console.log(items[0].restaurant);
 
     useEffect(()=>{
         let total = 0 
@@ -172,7 +172,7 @@ const Cart = (props) => {
                                         ))}
                                         <tr>
                                             
-                                            <td colspan="4" align="right" > 
+                                            <td colSpan="4" align="right" > 
                                                 {subTotal}
                                             </td>
                                         </tr>

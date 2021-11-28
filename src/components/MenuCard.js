@@ -15,6 +15,7 @@ const MenuCard = forwardRef(
         let found = false;
         const item = {
           id: id,
+          restaurant: restaurant,
           name: name,
           quantity: count,
           price: price,
