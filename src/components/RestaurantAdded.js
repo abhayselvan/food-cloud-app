@@ -1,9 +1,12 @@
 import React from "react";
+import "../css/RestaurantAdded.css"
 
 function RestaurantAdded() {
   return (
-    <div>
-      <h1>Restaurant added successfully!</h1>
+    <div className="add">
+      <div className="addTable">
+      <span className="addedText">Restaurant added successfully!</span>
+      </div>
     </div>
   );
 }
