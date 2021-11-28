@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Header from "../components/Header";
 import "bootstrap/dist/css/bootstrap.css";
 import "../css/Home.css";
+import { Link } from "@reach/router";
 
 class Home extends Component {
   render() {
@@ -11,12 +12,12 @@ class Home extends Component {
         <div className="home-cont1">
           <div className="">
             <div className="container home-cont1-text homeBottom homeOptions">
-              <a href="/customer">
+              <Link to="/customer">
                 <button className="Homepage_Button">Customer</button>{" "}
-              </a>
-              <a href="/restaurant">
+              </Link>
+              <Link to="/restaurant">
                 <button className="Homepage_Button">Restaurant</button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
