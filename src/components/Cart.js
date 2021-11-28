@@ -50,7 +50,7 @@ const Cart = (props) => {
                     totalBill : subTotal,
                     orderId : getIdByTime(getTime()) ,
                     creationDate : date,
-                    restaurantName : "superdennys",
+                    restaurantName : items[0].restaurant,
                     restaurantId: params.get("restaurantId"),
                     orderStatus : "placed",
                     items: items
