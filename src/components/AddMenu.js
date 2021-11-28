@@ -106,7 +106,7 @@ function AddMenu() {
           </form>
           <ul>
             {items.map((item, i) => {
-              return <li key={i}>{item.itemName}</li>;
+              return <li key={i}>{item.name}</li>;
             })}
           </ul>
         </div>
