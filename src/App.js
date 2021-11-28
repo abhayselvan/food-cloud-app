@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 
 import { getAmplifyUserAgent } from "@aws-amplify/core";
 import UserInfo from "./UserInfo";
+import OrderHistory from "./Pages/OrderHistory";
 
 Amplify.configure(config);
 
