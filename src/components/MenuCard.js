@@ -5,7 +5,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import Items from "../Items";
 
-const MenuCard = forwardRef(({ key, id, name, price, image }, ref) => {
+const MenuCard = forwardRef(({ key, id, name, price, image}, ref) => {
   const [count, setCount] = useState(0);
   const [countChanged, setCountChanged] = useState(false);
 
