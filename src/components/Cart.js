@@ -5,16 +5,19 @@ import Items from "../Items";
 import config from "../aws-exports";
 import UserInfo from "../UserInfo";
 import { useLocation } from "@reach/router";
+import { useNavigate } from "@reach/router";
+import { v4 as uuid } from 'time-uuid';
 
 Amplify.configure(config);
 
 const Cart = (props) => {
     const [subTotal,setSubTotal] = useState(0);
-
     const [items, setItems] = useState(Items || []);
-
+    const navigate = useNavigate();
     const location = useLocation();
     
+    // console.log(items[0].restaurant);
+
     useEffect(()=>{
         let total = 0 
         for (let item of items){
@@ -26,43 +29,48 @@ const Cart = (props) => {
     async function confirmOrder() {
         try {
             const params = new URLSearchParams(location.search);
+            console.log("useremail", UserInfo[0])
+           
+
+            var today = new Date(),
+            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
+            // const unique_id = uuid();
+            // const small_id = unique_id.slice(0,8)
+
+            var getTime = require('time-uuid/time');
+            var getIdByTime = require('time-uuid/get-by-time');
+
+            
+            console.log(date)
+            console.log(params.get("restaurantId"))
             API.post('ordersapi', '/orders', {
                 body: {
-                    userEmail : UserInfo.attributes.email,
+                    userEmail : UserInfo[0],
                     totalBill : subTotal,
-                    // orderId : orderId,
-                    creationDate : Date.now(),
-                    // restaurantName : restaurant,
+                    orderId : getIdByTime(getTime()) ,
+                    creationDate : date,
+                    restaurantName : "superdennys",
                     restaurantId: params.get("restaurantId"),
                     orderStatus : "placed",
-                    items,
+                    items: items,
                 }
-            });
+            }).then((res) => navigate('/final'))
+            .catch((err) => console.log(err));
+
+            // API.get('ordersapi','/orders/'+UserInfo[0])
+            // .then((res)=>console.log(res))
+            // .catch((err)=>console.log(err))
+
         } catch (error) {
             console.log(error);            
         }
-
-        // try {
-        //   const res = await fetch("http://localhost:4000/cart", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         items,
-        //         orderId: "123",
-        //         orderStatus: "Placed",
-        //         restaurantId: "112",
-        //         restaurantName: "ABC",
-        //         totalBill: "150" ,
-        //         userEmail: "xyz@gmail.com" ,
-        //         userId:  "xyz",
-        //     }),
-        //     headers: {
-        //       "Content-type": "application/json; charset=UTF-8",
-        //     },
-        //   });
-        //   alert("Order confirmed");
-        // } catch (err) {
-        //   console.log(err);
-        // }
+        
+        // const addToCartClicked = () => {
+        //     navigate('/final');
+            
+        //   };
+        
     }
 
     // useEffect(()=>{

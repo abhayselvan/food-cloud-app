@@ -29,8 +29,10 @@ const Menu = ({ id }) => {
 
   const addToCartClicked = () => {
     navigate(`/cart?restaurantId=${id}`);
+    console.log(restaurant.name);
   };
 
+  
   return (
     <div>
       <Header />
@@ -68,6 +70,7 @@ const Menu = ({ id }) => {
             name={item.name}
             price={item.price}
             image={item.imageUrl}
+            restaurant = {restaurant.name}
           />
         ))}
       </FlipMove>
