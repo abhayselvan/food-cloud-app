@@ -67,7 +67,7 @@ function AddRestaurant() {
             <div className="fieldc">
               <label className="labelc"> Image URL : </label>
               <input
-                className="inputc"
+                className="inputImageText"
                 defaultValue=""
                 onChange={(e) => {
                   obj.setImageUrl(e.target.value);

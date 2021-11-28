@@ -87,9 +87,9 @@ function AddMenu() {
               />
             </div>
             <div className="fieldc">
-              <label className="labelc">Item Iamge URL : </label>
+              <label className="labelc">Item Image URL : </label>
               <input
-                className="inputc"
+                className="inputImageText"
                 defaultValue=""
                 onChange={(e) => {
                   setItemIageUrl(e.target.value);

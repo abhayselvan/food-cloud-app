@@ -13,8 +13,8 @@
   border-color: var(--food);
   border-style: groove;
   position: fixed;
-  width: 500px;
-  height: 500px;
+  width: 700px;
+  height: 700px;
   margin-top: 120px;
   margin-left: 420px;
 }
@@ -74,3 +74,17 @@
 .fieldc {
   padding-bottom: 5px;
 }
+
+
+.inputImageText {
+    border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: dotted;
+  border-width: 1px;
+  border-color: var(--food);
+    width: 300px;
+}
+.inputImageText:focus {
+    outline: none;
+  }
