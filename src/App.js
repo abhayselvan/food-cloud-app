@@ -33,12 +33,11 @@ function App() {
   //     .catch((err) => console.log(err));
   // }, []);
   let user;
-  useEffect( async () => {
+  useEffect(async () => {
     user = await Auth.currentAuthenticatedUser();
     console.log(user.attributes.email);
     UserInfo.push(user.attributes.email);
-  })
-
+  });
 
   return (
     <div className="App">

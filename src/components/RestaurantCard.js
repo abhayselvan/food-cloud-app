@@ -4,16 +4,14 @@ import "../css/RestaurantCard.css";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import ReactStars from "react-rating-stars-component";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
-import {useNavigate} from "@reach/router";
+import { useNavigate } from "@reach/router";
 
 const RestaurantCard = forwardRef(
   ({ key, id, name, address, city, items, cusine, rating, image }, ref) => {
-
     const navigate = useNavigate();
     const moveToItemList = () => {
-      navigate(`/restaurant/${id}`)  
-    }
-    
+      navigate(`/restaurant/${id}`);
+    };
 
     return (
       <div className="RestaurantCard" ref={ref} onClick={moveToItemList}>

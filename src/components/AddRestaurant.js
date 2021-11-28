@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { RestaurantContext } from "../util/restaurantContext";
+import "../css/AddRestaurant.css";
 
 function AddRestaurant() {
   const obj = useContext(RestaurantContext);
@@ -8,72 +9,76 @@ function AddRestaurant() {
     obj.setPage("menu");
   };
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          <li>
-            Restaurant ID:
-            <input
-              defaultValue=""
-              placeholder="restaurant id"
-              onChange={(e) => {
-                obj.setRestaurantId(e.target.value);
-              }}
-            />
-          </li>
-          <li>
-            Restaurant Name:
-            <input
-              defaultValue=""
-              placeholder="restaurant name"
-              onChange={(e) => {
-                obj.setName(e.target.value);
-              }}
-            />
-          </li>
-          <li>
-            Cuisine:
-            <input
-              defaultValue=""
-              placeholder="cuisine"
-              onChange={(e) => {
-                obj.setCuisine(e.target.value);
-              }}
-            />
-          </li>
-          <li>
-            City:
-            <input
-              defaultValue=""
-              placeholder="city"
-              onChange={(e) => {
-                obj.setCity(e.target.value);
-              }}
-            />
-          </li>
-          <li>
-            Address:
-            <input
-              defaultValue=""
-              placeholder="address"
-              onChange={(e) => {
-                obj.setAddress(e.target.value);
-              }}
-            />
-          </li>
-          <li>
-            Rating:
-            <input
-              defaultValue=""
-              placeholder="rating"
-              onChange={(e) => {
-                obj.setRating(parseInt(e.target.value));
-              }}
-            />
-          </li>
-        </ul>
-        <button>Add Menu Items</button>
-      </form>
+    <div className="add">
+      <div className="addTable">
+        <div className="formWrapper">
+          <form onSubmit={handleSubmit}>
+            <div className="fieldc">
+              <label className="labelc">Restaurant ID : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setRestaurantId(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="fieldc">
+              <label className="labelc">Restaurant Name : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setName(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
+              <label className="labelc">Cuisine :</label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setCuisine(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
+              <label className="labelc">City : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setCity(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
+              <label className="labelc"> Address : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setAddress(e.target.value);
+                }}
+              />
+            </div>
+            <div className="fieldc">
+              <label className="labelc"> Rating : </label>
+              <input
+                className="inputc"
+                defaultValue=""
+                onChange={(e) => {
+                  obj.setRating(parseInt(e.target.value));
+                }}
+              />
+            </div>
+
+            <button className="buttonc">Add Menu Items</button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
