@@ -42,18 +42,18 @@
 }
 
 .buttoncart {
-    border: none;
-    padding: 7px;
-    margin-top: 10px;
-    margin-left: 1px;
-    border-radius: 5px;
-    background-color: var(--food);
-    font-weight: 500;
-  
-    cursor: pointer;
-    color: white;
-  }
+  border: none;
+  padding: 7px;
+  margin-top: 10px;
+  margin-left: 1px;
+  border-radius: 5px;
+  background-color: var(--food);
+  font-weight: 500;
 
-  .total {
-      margin-right: 5px;
-  }
+  cursor: pointer;
+  color: white;
+}
+
+.total {
+  margin-right: 5px;
+}

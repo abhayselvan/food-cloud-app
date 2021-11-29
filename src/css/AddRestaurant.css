@@ -64,14 +64,14 @@
 }
 
 .inputImageText {
-    border-left: none;
+  border-left: none;
   border-right: none;
   border-top: none;
   border-bottom: dotted;
   border-width: 1px;
   border-color: var(--food);
-    width: 300px;
+  width: 300px;
 }
 .inputImageText:focus {
-    outline: none;
-  }
+  outline: none;
+}
