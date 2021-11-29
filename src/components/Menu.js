@@ -2,14 +2,10 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import MenuCard from "./MenuCard";
 import FlipMove from "react-flip-move";
-import Items from "../Items";
-import UserInfo from "../UserInfo";
 import { API } from "aws-amplify";
 import "../css/Menu.css";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
-import ReactStars from "react-rating-stars-component";
-import { Restaurant } from "@mui/icons-material";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import { useNavigate } from "@reach/router";
 

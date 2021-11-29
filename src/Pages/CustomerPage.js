@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import RestaurantCard from "../components/RestaurantCard";
 import FlipMove from "react-flip-move";
-import Amplify, { API, Auth } from "aws-amplify";
+import Amplify, { API } from "aws-amplify";
 import config from "../aws-exports";
 import { Link } from "@reach/router";
+import "../css/CustomerPage.css"
 
 Amplify.configure(config);
 
@@ -28,13 +29,17 @@ function CustomerPage() {
   return (
     <div>
       <Header />
-      <div>
-        <input
+      <div >
+        <input className="search"
           type="text"
           placeholder="Search..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-      </div>
+     
+      <Link to="/orders">
+            <button className="orderbutton">My Orders</button>
+          </Link>
+          </div>
       {!isLoading && (
         <div>
           <div>
@@ -66,9 +71,7 @@ function CustomerPage() {
                 ))}
             </FlipMove>
           </div>
-          <Link to="/orders">
-            <button className="Homepage_Button">Orders</button>
-          </Link>
+          
         </div>
       )}
     </div>
