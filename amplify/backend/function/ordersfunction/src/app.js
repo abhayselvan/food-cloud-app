@@ -55,6 +55,65 @@ const convertUrlType = (param, type) => {
 }
 
 /********************************
+ * Email service *
+ ********************************/
+
+var AWS = require('aws-sdk');
+AWS.config.region = 'us-east-2';
+
+function sendEmail(event) {
+  
+  // Create sendEmail params 
+  var params = {
+    Destination: { /* required */
+      CcAddresses: [
+        event['sender'],
+        /* more items */
+      ],
+      ToAddresses: [
+        event['recipient'],
+        /* more items */
+      ]
+    },
+    Message: { /* required */
+      Body: { /* required */
+        Html: {
+         Charset: "UTF-8",
+         Data: "FoodCloud - Order " + event['orderStatus'] + "<br>\n This email is to inform you that your order has been " + event['orderStatus'] + " and the order id for reference is" + event['orderId']
+        },
+        // Text: {
+        // Charset: "UTF-8",
+        // Data: "FoodCloud - Order Confirmed\r\n This email is to inform you that your order has placed and the order id for reference is" + event['orderId']
+        // }
+       },
+       Subject: {
+        Charset: 'UTF-8',
+        Data: event['subject'] + event['orderStatus'] + event['orderId']
+       }
+      },
+    Source: event['sender'], /* required */
+    ReplyToAddresses: [
+       event['sender'],
+      /* more items */
+    ],
+  };
+
+  // Create the promise and SES service object
+  var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
+  
+  // Handle promise's fulfilled/rejected states
+  sendPromise.then(
+    function(data) {
+      console.log(data.MessageId);
+    }).catch(
+      function(err) {
+      console.error(err, err.stack);
+    });
+};
+
+
+
+/********************************
  * HTTP Get method for list objects *
  ********************************/
 
@@ -187,6 +246,15 @@ app.post(path, function(req, res) {
       res.statusCode = 500;
       res.json({error: err, url: req.url, body: req.body});
     } else{
+      let event = {
+        "subject": "FoodCloud Order has been - ",
+        "orderId": req.params.orderId,
+        "sender": "FoodCloud <lakshminaarayananvs@gmail.com>",
+        "orderStatus" : "Confirmed",
+        "recipient": req.params.userEmail
+      }
+      sendEmail(event);
+
       res.json({success: 'post call succeed!', url: req.url, data: data})
     }
   });
