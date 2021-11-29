@@ -16,13 +16,8 @@
     "s3Key": {
       "Type": "String"
     },
-    "storageordersdbName": {
-      "Type": "String",
-      "Default": "storageordersdbName"
-    },
-    "storageordersdbArn": {
-      "Type": "String",
-      "Default": "storageordersdbArn"
+    "sesEmail": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -55,12 +50,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "ordersfunction",
+            "emailfunction",
             {
               "Fn::Join": [
                 "",
                 [
-                  "ordersfunction",
+                  "emailfunction",
                   "-",
                   {
                     "Ref": "env"
@@ -77,6 +72,9 @@
             },
             "REGION": {
               "Ref": "AWS::Region"
+            },
+            "SES_EMAIL": {
+              "Ref": "sesEmail"
             }
           }
         },
@@ -97,12 +95,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "reactappLambdaRole35d291b3",
+            "reactappLambdaRole265e8fe3",
             {
               "Fn::Join": [
                 "",
                 [
-                  "reactappLambdaRole35d291b3",
+                  "reactappLambdaRole265e8fe3",
                   "-",
                   {
                     "Ref": "env"
@@ -170,35 +168,62 @@
               }
             },
             {
-              "Effect": "Allow",
               "Action": [
-                "dynamodb:DescribeTable",
-                "dynamodb:GetItem",
-                "dynamodb:Query",
-                "dynamodb:Scan",
-                "dynamodb:PutItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:DeleteItem"
+                "ses:SendEmail"
               ],
-              "Resource": [
-                {
-                  "Ref": "storageordersdbArn"
-                },
-                {
-                  "Fn::Join": [
-                    "/",
-                    [
-                      {
-                        "Ref": "storageordersdbArn"
-                      },
-                      "index/*"
-                    ]
-                  ]
-                }
-              ]
+              "Effect": "Allow",
+              "Resource": "arn:aws:ses:us-east-2:108085554053:identity/abhayselvan@gmail.com"
             }
           ]
         }
+      }
+    },
+    "LambdaTriggerPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy-",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ListStreams"
+              ],
+              "Resource": "arn:aws:dynamodb:us-east-2:108085554053:table/ordersdb-dev/stream/2021-11-26T23:52:29.284"
+            }
+          ]
+        }
+      }
+    },
+    "LambdaEventSourceMapping": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "DependsOn": [
+        "LambdaTriggerPolicy",
+        "LambdaExecutionRole"
+      ],
+      "Properties": {
+        "BatchSize": 100,
+        "Enabled": true,
+        "EventSourceArn": "arn:aws:dynamodb:us-east-2:108085554053:table/ordersdb-dev/stream/2021-11-26T23:52:29.284",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaFunction",
+            "Arn"
+          ]
+        },
+        "StartingPosition": "LATEST"
       }
     }
   },
