@@ -247,11 +247,11 @@ app.post(path, function(req, res) {
       res.json({error: err, url: req.url, body: req.body});
     } else{
       let event = {
-        "subject": "FoodCloud Order has been - ",
-        "orderId": req.params.orderId,
-        "sender": "FoodCloud <lakshminaarayananvs@gmail.com>",
-        "orderStatus" : "Confirmed",
-        "recipient": req.params.userEmail
+        subject: "FoodCloud Order has been - ",
+        orderId: req.params.orderId,
+        sender: "FoodCloud <lakshminaarayananvs@gmail.com>",
+        orderStatus : "Confirmed",
+        recipient: req.params.userEmail
       }
       sendEmail(event);
 
