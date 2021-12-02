@@ -23,8 +23,59 @@
         },
         "ordersfunction": {
           "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
-          "s3Key": "amplify-builds/ordersfunction-6a50613064416b315559-build.zip"
+          "s3Key": "amplify-builds/ordersfunction-71664a6e6f5451616e33-build.zip"
+        },
+        "emailfunction": {
+          "sesEmail": "abhayselvan@gmail.com",
+          "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
+          "s3Key": "amplify-builds/emailfunction-44534c64577754393054-build.zip"
         }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d24jusn95ilcmx",
+          "type": "manual"
+        }
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-reactapp-prod-203506-authRole",
+      "UnauthRoleArn": "arn:aws:iam::108085554053:role/amplify-reactapp-prod-203506-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::108085554053:role/amplify-reactapp-prod-203506-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-reactapp-prod-203506-deployment",
+      "UnauthRoleName": "amplify-reactapp-prod-203506-unauthRole",
+      "StackName": "amplify-reactapp-prod-203506",
+      "StackId": "arn:aws:cloudformation:us-east-2:108085554053:stack/amplify-reactapp-prod-203506/bba60460-50cd-11ec-a6e7-02602f394520",
+      "AmplifyAppId": "d24jusn95ilcmx",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-reactapp-prod-203506-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
+    },
+    "categories": {
+      "function": {
+        "restaurantsfunction": {
+          "deploymentBucketName": "amplify-reactapp-prod-203506-deployment",
+          "s3Key": "amplify-builds/restaurantsfunction-51366d456447344d6e53-build.zip"
+        },
+        "ordersfunction": {
+          "deploymentBucketName": "amplify-reactapp-prod-203506-deployment",
+          "s3Key": "amplify-builds/ordersfunction-71664a6e6f5451616e33-build.zip"
+        },
+        "emailfunction": {
+          "sesEmail": "abhayselvan@gmail.com",
+          "deploymentBucketName": "amplify-reactapp-prod-203506-deployment",
+          "s3Key": "amplify-builds/emailfunction-44534c64577754393054-build.zip"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d24jusn95ilcmx",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "reactapp71a41176": {}
       }
     }
   }

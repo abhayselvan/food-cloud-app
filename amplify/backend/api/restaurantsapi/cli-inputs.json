@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "paths": {
+    "/restaurants": {
+      "name": "/restaurants",
+      "lambdaFunction": "restaurantsfunction",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

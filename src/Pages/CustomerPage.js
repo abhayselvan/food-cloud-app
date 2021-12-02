@@ -5,7 +5,8 @@ import FlipMove from "react-flip-move";
 import Amplify, { API } from "aws-amplify";
 import config from "../aws-exports";
 import { Link } from "@reach/router";
-import "../css/CustomerPage.css"
+import "../css/CustomerPage.css";
+
 
 Amplify.configure(config);
 
@@ -29,17 +30,20 @@ function CustomerPage() {
   return (
     <div>
       <Header />
+
       <div >
         <input className="search"
           type="text"
           placeholder="Search..."
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-     
-      <Link to="/orders">
-            <button className="orderbutton">My Orders</button>
-          </Link>
-          </div>
+
+
+        <Link to="/orders">
+          <button className="orderbutton">My Orders</button>
+        </Link>
+      </div>
+
       {!isLoading && (
         <div>
           <div>
@@ -71,7 +75,6 @@ function CustomerPage() {
                 ))}
             </FlipMove>
           </div>
-          
         </div>
       )}
     </div>
