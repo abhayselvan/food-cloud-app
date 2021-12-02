@@ -172,7 +172,7 @@
                 "ses:SendEmail"
               ],
               "Effect": "Allow",
-              "Resource": "arn:aws:ses:us-east-2:108085554053:identity/abhayselvan@gmail.com"
+              "Resource": "arn:aws:ses:us-east-2:108085554053:identity/*"
             }
           ]
         }

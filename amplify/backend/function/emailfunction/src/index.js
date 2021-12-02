@@ -7,18 +7,19 @@ exports.handler = async (event) => {
       //pull off items from stream
       const userEmail = streamedItem.dynamodb.NewImage.userEmail.S;
       const restaurantName = streamedItem.dynamodb.NewImage.restaurantName.S;
+      const orderId = streamedItem.dynamodb.NewImage.orderId.S;
 
       await ses
         .sendEmail({
           Destination: {
-            ToAddresses: [process.env.SES_EMAIL],
+            ToAddresses: [userEmail],
           },
           Source: process.env.SES_EMAIL,
           Message: {
-            Subject: { Data: "Order Confirmation" },
+            Subject: { Data: "FoodCloud - Order Confirmation" },
             Body: {
               Text: {
-                Data: `Hello ${userEmail}. Your order at the restaurant ${restaurantName} has been successfully placed!`,
+                Data: `Hello ${userEmail}. Your order at the restaurant ${restaurantName} has been successfully placed! Order ID for reference: ${orderId}.`,
               },
             },
           },

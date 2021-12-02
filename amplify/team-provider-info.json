@@ -28,7 +28,7 @@
         "emailfunction": {
           "sesEmail": "abhayselvan@gmail.com",
           "deploymentBucketName": "amplify-reactapp-dev-122927-deployment",
-          "s3Key": "amplify-builds/emailfunction-64504b43776239486537-build.zip"
+          "s3Key": "amplify-builds/emailfunction-44534c64577754393054-build.zip"
         }
       },
       "hosting": {
@@ -61,6 +61,11 @@
         "ordersfunction": {
           "deploymentBucketName": "amplify-reactapp-prod-203506-deployment",
           "s3Key": "amplify-builds/ordersfunction-71664a6e6f5451616e33-build.zip"
+        },
+        "emailfunction": {
+          "sesEmail": "abhayselvan@gmail.com",
+          "deploymentBucketName": "amplify-reactapp-prod-203506-deployment",
+          "s3Key": "amplify-builds/emailfunction-44534c64577754393054-build.zip"
         }
       },
       "hosting": {
