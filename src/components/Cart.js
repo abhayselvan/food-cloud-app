@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Amplify, { API, Auth } from "aws-amplify";
 import Items from "../Items";
 import config from "../aws-exports";
 import UserInfo from "../UserInfo";
 import { useLocation } from "@reach/router";
 import { useNavigate } from "@reach/router";
-import { v4 as uuid } from "time-uuid";
 import Header from "../components/Header";
 import "../css/Cart.css";
 

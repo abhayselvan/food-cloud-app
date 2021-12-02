@@ -11,7 +11,6 @@ import "./css/App.css";
 import Cart from "./components/Cart";
 import OrderPlaced from "./Pages/OrderPlaced";
 import { CustomerContext } from "./util/CustomerContext";
-import { getAmplifyUserAgent } from "@aws-amplify/core";
 import UserInfo from "./UserInfo";
 import OrderHistory from "./Pages/OrderHistory";
 
